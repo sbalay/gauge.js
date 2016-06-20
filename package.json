@@ -1,0 +1,19 @@
+{
+  "name": "gauge.js",
+  "version": "1.0.0",
+  "description": "gauge.js ========",
+  "main": "dist/gauge.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbalay/gauge.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sbalay/gauge.js/issues"
+  },
+  "homepage": "https://github.com/sbalay/gauge.js#readme"
+}
