@@ -218,6 +218,13 @@
       return this;
     };
 
+    BaseGauge.prototype.getAvailableWidth = function() {
+      var parentStyle, parentPadding;
+      parentStyle = getComputedStyle(this.canvas.parentElement);
+      parentPadding = parseInt(parentStyle.paddingLeft.slice(0, -2)) + parseInt(parentStyle.paddingRight.slice(0, -2));
+      return this.canvas.parentElement.offsetWidth - parentPadding;
+    }
+
     BaseGauge.prototype.configDisplayScale = function() {
       var backingStorePixelRatio, devicePixelRatio, height, prevDisplayScale, width;
       prevDisplayScale = this.displayScale;
@@ -229,8 +236,8 @@
         this.displayScale = devicePixelRatio / backingStorePixelRatio;
       }
       if (this.displayScale !== prevDisplayScale) {
-        width = this.canvas.G__width || this.canvas.width;
-        height = this.canvas.G__height || this.canvas.height;
+        width = this.options.fixedWidth ? this.canvas.G__width || this.canvas.width : this.getAvailableWidth();
+        height = this.options.fixedWidth ? this.canvas.G__height || this.canvas.height : this.getAvailableWidth() / 2;
         this.canvas.width = width * this.displayScale;
         this.canvas.height = height * this.displayScale;
         this.canvas.style.width = width + "px";
