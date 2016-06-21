@@ -358,14 +358,22 @@
       endX = Math.round(centerX + this.strokeWidth * Math.cos(angle + Math.PI / 2));
       endY = Math.round(centerY + this.strokeWidth * Math.sin(angle + Math.PI / 2));
       this.ctx.fillStyle = this.options.color;
-      this.ctx.beginPath();
-      this.ctx.arc(centerX, centerY, this.strokeWidth, 0, Math.PI * 2, true);
-      this.ctx.fill();
+      this.ctx.shadowColor = '#000';
+      this.ctx.shadowBlur = 20;
+      this.ctx.shadowOffsetX = 1;
+      this.ctx.shadowOffsetY = 1;
       this.ctx.beginPath();
       this.ctx.moveTo(startX, startY);
       this.ctx.lineTo(x, y);
       this.ctx.lineTo(endX, endY);
-      return this.ctx.fill();
+      this.ctx.fill()
+      this.ctx.shadowColor = 'transparent';
+      this.ctx.shadowBlur = 0;
+      this.ctx.shadowOffsetX = 0;
+      this.ctx.shadowOffsetY = 0;
+      this.ctx.beginPath();
+      this.ctx.arc(centerX, centerY, this.strokeWidth, 0, Math.PI * 2, true);
+      this.ctx.fill();
     };
 
     return GaugePointer;
