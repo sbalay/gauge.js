@@ -235,7 +235,8 @@
         backingStorePixelRatio = this.ctx.webkitBackingStorePixelRatio || this.ctx.mozBackingStorePixelRatio || this.ctx.msBackingStorePixelRatio || this.ctx.oBackingStorePixelRatio || this.ctx.backingStorePixelRatio || 1;
         this.displayScale = devicePixelRatio / backingStorePixelRatio;
       }
-      if (this.displayScale !== prevDisplayScale) {
+      if (this.displayScale !== prevDisplayScale || !this.configInitialized) {
+        this.configInitialized = true;
         width = this.options.fixedWidth ? this.canvas.G__width || this.canvas.width : this.getAvailableWidth();
         height = this.options.fixedWidth ? this.canvas.G__height || this.canvas.height : this.getAvailableWidth() / 2;
         this.canvas.width = width * this.displayScale;
